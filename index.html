@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الأستاذ ناجح | إدارة الدروس</title>
+    
+    <link rel="stylesheet" href="teacher-style.css">
+</head>
+<body>
+
+    <div class="admin-container">
+        <div class="upload-card">
+            <h2>إضافة درس جديد للمنصة</h2>
+            <p>أدخل تفاصيل الدرس ليظهر فوراً للطلاب</p>
+            
+            <input type="text" id="lessonTitle" placeholder="عنوان الدرس (مثلاً: شرح المتجهات)">
+            
+            <select id="lessonCategory">
+                <option value="algebra">قسم الجبر</option>
+                <option value="trigonometry">قسم حساب المثلثات</option>
+                <option value="geometry">قسم الهندسة</option>
+            </select>
+            
+            <input type="url" id="lessonLink" placeholder="رابط Google Drive للملف">
+            
+            <button id="addBtn" onclick="addLesson()">نشر الدرس الآن</button>
+        </div>
+
+        <div class="manage-card">
+            <h3>الدروس المنشورة حالياً</h3>
+            <div id="adminStatus">جاري تحميل البيانات...</div>
+            <div id="lessonsList" class="lessons-list">
+                </div>
+        </div>
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة &copy; تصميم وتطوير عبدالله حسام محمد
+    </footer>
+
+    <script type="module" src="teacher-script.js"></script>
+</body>
+</html>
