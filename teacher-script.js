@@ -18,10 +18,9 @@ window.addLesson = async function() {
     const title = document.getElementById('lessonTitle').value;
     const category = document.getElementById('lessonCategory').value;
     const link = document.getElementById('lessonLink').value;
-    const orderValue = document.getElementById('lessonOrder').value;
 
-    if (!title || !link || !orderValue) {
-        alert("برجاء إدخال كافة البيانات بما فيها رقم الترتيب!");
+    if (!title || !link) {
+        alert("برجاء إدخال كافة البيانات!");
         return;
     }
 
@@ -30,7 +29,6 @@ window.addLesson = async function() {
             title: title,
             category: category,
             link: link,
-            orderIndex: parseInt(orderValue), // حفظ الترتيب كرقم للفرز الصحيح
             createdAt: new Date()
         });
         alert("✅ تم نشر الدرس بنجاح!");
@@ -46,8 +44,7 @@ async function loadLessonsForAdmin() {
     const status = document.getElementById('adminStatus');
 
     try {
-        // جلب البيانات مرتبة حسب حقل orderIndex تصاعدياً
-        const q = query(collection(db, "lessons"), orderBy("orderIndex", "asc"));
+        const q = query(collection(db, "lessons"), orderBy("createdAt", "desc"));
         const snap = await getDocs(q);
         
         status.style.display = "none";
@@ -60,7 +57,7 @@ async function loadLessonsForAdmin() {
             listDiv.innerHTML += `
                 <div class="lesson-item">
                     <div>
-                        <strong>الدرس رقم ${data.orderIndex}: ${data.title}</strong> <br>
+                        <strong>${data.title}</strong> <br>
                         <small style="color: #666;">${data.category}</small>
                     </div>
                     <button class="del-btn" onclick="deleteLesson('${id}')">حذف</button>
